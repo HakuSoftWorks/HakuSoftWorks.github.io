@@ -1,25 +1,184 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Haku Soft Works</title>
-
-  <meta name="description"
-        content="Haku Soft Works - Software for Classic Japanese Computers">
+  <meta name="description" content="Haku Soft Works - Software for Classic Japanese Computers. BASIC MASTER and Motorola 6800 software development, ports, demos, and development notes.">
+  <meta name="theme-color" content="#ffffff">
+  <style>
+    :root{
+      --navy:#071a33; --blue:#0a6cff; --cyan:#13b6e8; --cyan-soft:#e9f9ff;
+      --ink:#142033; --muted:#607087; --line:#dce8f2; --panel:#f7fbfe;
+      --white:#ffffff; --shadow:0 18px 50px rgba(11,52,93,.10); --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;
+      color:var(--ink); background:linear-gradient(180deg,#fff 0%,#f8fcff 52%,#fff 100%); line-height:1.7;
+    }
+    a{color:inherit}
+    .wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+    header{position:sticky;top:0;z-index:20;backdrop-filter:blur(16px);background:rgba(255,255,255,.88);border-bottom:1px solid rgba(220,232,242,.9)}
+    .nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;text-decoration:none;letter-spacing:.02em}
+    .brandmark{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:900;font-size:14px;background:linear-gradient(145deg,var(--navy),#0a365f);border:3px solid var(--cyan);box-shadow:0 6px 18px rgba(19,182,232,.25)}
+    nav{display:flex;gap:22px;flex-wrap:wrap}
+    nav a{text-decoration:none;font-size:14px;font-weight:700;color:#40536b}
+    nav a:hover{color:var(--blue)}
+    .hero{padding:92px 0 72px;overflow:hidden;position:relative}
+    .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none}
+    .hero:before{width:430px;height:430px;background:radial-gradient(circle,rgba(19,182,232,.13),rgba(19,182,232,0) 70%);right:-120px;top:-100px}
+    .hero:after{width:360px;height:360px;background:radial-gradient(circle,rgba(10,108,255,.08),rgba(10,108,255,0) 70%);left:-100px;bottom:-120px}
+    .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:#087d9f;background:var(--cyan-soft);border:1px solid #cceffc;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 5px rgba(19,182,232,.12)}
+    h1{font-size:clamp(48px,7vw,86px);line-height:.98;letter-spacing:-.045em;margin:22px 0 14px;color:var(--navy)}
+    .softworks{display:block;color:var(--cyan)}
+    .tagline{margin:0 0 24px;font-size:clamp(18px,2vw,24px);font-weight:800;color:#28425f;letter-spacing:.01em}
+    .lead{max-width:760px;margin:0;color:var(--muted);font-size:17px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:12px;text-decoration:none;font-weight:800;font-size:14px;border:1px solid var(--line);background:#fff;transition:.2s ease}
+    .btn.primary{color:#fff;border-color:transparent;background:linear-gradient(135deg,var(--blue),var(--cyan));box-shadow:0 10px 28px rgba(10,108,255,.22)}
+    .btn:hover{transform:translateY(-2px)}
+    .terminal{background:linear-gradient(160deg,#071a33,#0a2847);color:#8ceaff;border-radius:26px;padding:24px;box-shadow:var(--shadow);position:relative;overflow:hidden;min-height:330px;border:1px solid #0d416d}
+    .terminal:before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px);background-size:100% 5px;pointer-events:none}
+    .term-top{display:flex;gap:8px;margin-bottom:24px}.dot{width:10px;height:10px;border-radius:50%;background:#1b577d}
+    .term-logo{font-size:64px;line-height:1;font-weight:900;letter-spacing:-.08em;color:#2dd7ff;margin:12px 0 12px}.term-logo span{color:#fff}
+    pre{margin:0;white-space:pre-wrap;font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;font-size:14px;line-height:1.65;color:#8de9ff}
+    section{padding:72px 0}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:30px}
+    .section-head h2{margin:0;color:var(--navy);font-size:clamp(30px,4vw,44px);letter-spacing:-.03em}
+    .section-head p{margin:0;max-width:620px;color:var(--muted)}
+    .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .feature{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 8px 26px rgba(11,52,93,.05)}
+    .feature b{display:block;color:var(--navy);margin-bottom:7px}
+    .icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;margin-bottom:16px;color:var(--blue);background:#eef6ff;font-weight:900;font-family:monospace}
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}
+    .badge{display:inline-block;padding:5px 10px;border-radius:999px;background:#edf9ff;color:#087d9f;font-size:12px;font-weight:800;margin-bottom:16px}
+    .card h3{margin:0 0 8px;font-size:26px;color:var(--navy)} .card p{color:var(--muted);margin:0 0 18px}
+    .meta{display:flex;gap:8px;flex-wrap:wrap}.meta span{font-size:12px;font-weight:800;padding:6px 9px;border-radius:8px;background:#f2f6fa;color:#50637a}
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+    .about-panel{background:linear-gradient(145deg,#f6fbff,#fff);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+    .about-panel h3{margin-top:0;color:var(--navy)} .about-panel p{color:var(--muted)}
+    .link-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .link-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;transition:.2s ease}
+    .link-card:hover{transform:translateY(-3px);border-color:#9edff1;box-shadow:0 10px 28px rgba(11,52,93,.08)}
+    .link-card strong{display:block;color:var(--navy)} .link-card span{font-size:13px;color:var(--muted)}
+    footer{margin-top:40px;padding:34px 0 48px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+    .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    @media(max-width:900px){.hero-grid,.about{grid-template-columns:1fr}.feature-grid{grid-template-columns:repeat(2,1fr)}.link-grid{grid-template-columns:repeat(2,1fr)}.terminal{max-width:640px}}
+    @media(max-width:640px){.wrap{width:min(100% - 28px,1120px)}nav{display:none}.hero{padding-top:58px}.feature-grid,.projects,.link-grid{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:10px}.terminal{min-height:auto}.term-logo{font-size:52px}}
+  </style>
 </head>
-
 <body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><span class="brandmark">HSW</span><span>Haku Soft Works</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#about">About</a><a href="#projects">Projects</a><a href="#links">Links</a><a href="mailto:contact@hakusoftworks.com">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Classic Japanese Computers</div>
+        <h1>HAKU <span class="softworks">SOFT WORKS</span></h1>
+        <p class="tagline">Software for Classic Japanese Computers</p>
+        <p class="lead">BASIC MASTERシリーズやMotorola 6800を中心に、日本のクラシックコンピュータ向けソフトウェアの開発・移植・検証を行っています。実機とエミュレータの両方で、当時のコンピュータを「今も動く技術」として楽しむための活動です。</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="https://github.com/HakuSoftWorks" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <div class="terminal" aria-label="Retro computer terminal motif">
+        <div class="term-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="term-logo">HS<span>W</span></div>
+<pre>*** HAKU SOFT WORKS ***
 
-  <h1>Haku Soft Works</h1>
+CPU      : MOTOROLA 6800
+SYSTEM   : BASIC MASTER
+MODE     : DEVELOPMENT
+STATUS   : READY
 
-  <p>Software for Classic Japanese Computers</p>
+&gt; BUILD
+&gt; TEST
+&gt; RUN_</pre>
+      </div>
+    </div>
+  </section>
 
-  <p>
-    Developing software for classic Japanese computers,
-    including the BASIC MASTER series and Motorola 6800 systems.
-  </p>
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What we do</h2>
+        <p>古いコンピュータを懐かしむだけでなく、ソフトウェアを実際に作り、動かし、記録することを大切にしています。</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature"><div class="icon">&lt;/&gt;</div><b>Development</b><span>6800アセンブリを中心としたソフトウェア開発。</span></div>
+        <div class="feature"><div class="icon">CPU</div><b>Retro Computing</b><span>BASIC MASTERなど日本の初期PCを対象に検証。</span></div>
+        <div class="feature"><div class="icon">&gt;_</div><b>Ports &amp; Reimplementations</b><span>古典的ソフトウェアを現代の視点で再構成。</span></div>
+        <div class="feature"><div class="icon">DOC</div><b>Technical Notes</b><span>メモリマップ、移植ノウハウ、開発資料を整理。</span></div>
+      </div>
+    </div>
+  </section>
 
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p>Haku Soft Worksで開発・整備しているプロジェクトです。公開準備が整ったものからGitHubで順次公開します。</p>
+      </div>
+      <div class="projects">
+        <article class="card">
+          <span class="badge">Preparing release</span>
+          <h3>Super Star Trek</h3>
+          <p>BASIC MASTER L2II向けにMotorola 6800アセンブリで再構成したクラシック・コンピュータゲームプロジェクト。</p>
+          <div class="meta"><span>BASIC MASTER L2II</span><span>MC6800</span><span>Assembly</span></div>
+        </article>
+        <article class="card">
+          <span class="badge">In development</span>
+          <h3>Reversi</h3>
+          <p>BASIC MASTER L2II上で動作するリバーシ。評価関数、探索、表示UIを含め、実機で遊べる完成度を目指しています。</p>
+          <div class="meta"><span>BASIC MASTER L2II</span><span>MC6800</span><span>Game AI</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap about">
+      <div class="about-panel">
+        <h3>About Haku Soft Works</h3>
+        <p>Haku Soft Worksは、日本のクラシックコンピュータを対象とする独立した個人ソフトウェア開発プロジェクトです。</p>
+        <p>“Software for Classic Japanese Computers” をテーマに、ソフトウェア、技術資料、実機での動作記録を公開していきます。</p>
+      </div>
+      <div class="about-panel">
+        <h3>Focus</h3>
+        <p>BASIC MASTER series / Motorola 6800 / Retro software development / Ports / Reimplementations / Documentation</p>
+        <p>古いハードウェアの制約を理解し、その制約の中で工夫することもHaku Soft Worksの開発テーマのひとつです。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="links">
+    <div class="wrap">
+      <div class="section-head"><h2>Links</h2><p>開発成果、動画、最新情報はこちらから。</p></div>
+      <div class="link-grid">
+        <a class="link-card" href="https://github.com/HakuSoftWorks" target="_blank" rel="noopener"><strong>GitHub</strong><span>Source code &amp; releases</span></a>
+        <a class="link-card" href="https://www.youtube.com/@HakuSoftWorks" target="_blank" rel="noopener"><strong>YouTube</strong><span>Demos &amp; real hardware videos</span></a>
+        <a class="link-card" href="https://x.com/HakuSoftWorks" target="_blank" rel="noopener"><strong>X</strong><span>Updates &amp; development notes</span></a>
+        <a class="link-card" href="mailto:contact@hakusoftworks.com"><strong>Contact</strong><span>contact@hakusoftworks.com</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap foot"><span>c 2026 Haku Soft Works</span><span>Software for Classic Japanese Computers</span></div>
+</footer>
 </body>
 </html>
