@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Haku Soft Works</title>
-  <meta name="description" content="Haku Soft Works - Software for Classic Japanese Computers. BASIC MASTER and Motorola 6800 software development, ports, demos, and development notes.">
+  <meta name="description" content="Haku Soft Works - Software for Classic Japanese Computers. BASIC MASTERとMotorola 6800を中心に、クラシックコンピュータ向けソフトウェアを開発・公開しています。">
   <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://hakusoftworks.com/">
+  <link rel="alternate" hreflang="ja" href="https://hakusoftworks.com/">
+  <link rel="alternate" hreflang="en" href="https://hakusoftworks.com/en.html">
   <style>
     :root{
       --navy:#071a33; --blue:#0a6cff; --cyan:#13b6e8; --cyan-soft:#e9f9ff;
@@ -21,12 +24,15 @@
     a{color:inherit}
     .wrap{width:min(1120px,calc(100% - 40px));margin:auto}
     header{position:sticky;top:0;z-index:20;backdrop-filter:blur(16px);background:rgba(255,255,255,.88);border-bottom:1px solid rgba(220,232,242,.9)}
-    .nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800;text-decoration:none;letter-spacing:.02em}
+    .nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;text-decoration:none;letter-spacing:.02em;white-space:nowrap}
     .brandmark{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:900;font-size:14px;background:linear-gradient(145deg,var(--navy),#0a365f);border:3px solid var(--cyan);box-shadow:0 6px 18px rgba(19,182,232,.25)}
+    .nav-right{display:flex;align-items:center;gap:18px}
     nav{display:flex;gap:22px;flex-wrap:wrap}
     nav a{text-decoration:none;font-size:14px;font-weight:700;color:#40536b}
     nav a:hover{color:var(--blue)}
+    .lang{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:34px;padding:0 10px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:12px;font-weight:900;color:var(--navy);background:#fff}
+    .lang:hover{border-color:#9edff1;color:var(--blue)}
     .hero{padding:92px 0 72px;overflow:hidden;position:relative}
     .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none}
     .hero:before{width:430px;height:430px;background:radial-gradient(circle,rgba(19,182,232,.13),rgba(19,182,232,0) 70%);right:-120px;top:-100px}
@@ -58,28 +64,35 @@
     .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
     .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}
     .badge{display:inline-block;padding:5px 10px;border-radius:999px;background:#edf9ff;color:#087d9f;font-size:12px;font-weight:800;margin-bottom:16px}
+    .badge.released{background:#eefbf3;color:#19784a}
     .card h3{margin:0 0 8px;font-size:26px;color:var(--navy)} .card p{color:var(--muted);margin:0 0 18px}
     .meta{display:flex;gap:8px;flex-wrap:wrap}.meta span{font-size:12px;font-weight:800;padding:6px 9px;border-radius:8px;background:#f2f6fa;color:#50637a}
+    .project-link{display:inline-flex;margin-top:20px;text-decoration:none;font-size:13px;font-weight:800;color:var(--blue)}
+    .project-link:hover{text-decoration:underline}
     .about{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
     .about-panel{background:linear-gradient(145deg,#f6fbff,#fff);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
     .about-panel h3{margin-top:0;color:var(--navy)} .about-panel p{color:var(--muted)}
-    .link-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .link-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
     .link-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;transition:.2s ease}
     .link-card:hover{transform:translateY(-3px);border-color:#9edff1;box-shadow:0 10px 28px rgba(11,52,93,.08)}
     .link-card strong{display:block;color:var(--navy)} .link-card span{font-size:13px;color:var(--muted)}
     footer{margin-top:40px;padding:34px 0 48px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
     .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-    @media(max-width:900px){.hero-grid,.about{grid-template-columns:1fr}.feature-grid{grid-template-columns:repeat(2,1fr)}.link-grid{grid-template-columns:repeat(2,1fr)}.terminal{max-width:640px}}
-    @media(max-width:640px){.wrap{width:min(100% - 28px,1120px)}nav{display:none}.hero{padding-top:58px}.feature-grid,.projects,.link-grid{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:10px}.terminal{min-height:auto}.term-logo{font-size:52px}}
+    @media(max-width:900px){.hero-grid,.about{grid-template-columns:1fr}.feature-grid{grid-template-columns:repeat(2,1fr)}.terminal{max-width:640px}}
+    @media(max-width:720px){nav{display:none}.nav-right{gap:0}}
+    @media(max-width:640px){.wrap{width:min(100% - 28px,1120px)}.hero{padding-top:58px}.feature-grid,.projects{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:10px}.terminal{min-height:auto}.term-logo{font-size:52px}}
   </style>
 </head>
 <body>
 <header>
   <div class="wrap nav">
     <a class="brand" href="#top"><span class="brandmark">HSW</span><span>Haku Soft Works</span></a>
-    <nav aria-label="Main navigation">
-      <a href="#about">About</a><a href="#projects">Projects</a><a href="#links">Links</a><a href="mailto:contact@hakusoftworks.com">Contact</a>
-    </nav>
+    <div class="nav-right">
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a><a href="#projects">Projects</a><a href="#links">Links</a><a href="mailto:contact@hakusoftworks.com">Contact</a>
+      </nav>
+      <a class="lang" href="en.html" lang="en" hreflang="en" aria-label="English page">EN</a>
+    </div>
   </div>
 </header>
 <main id="top">
@@ -131,20 +144,21 @@ STATUS   : READY
     <div class="wrap">
       <div class="section-head">
         <h2>Projects</h2>
-        <p>Haku Soft Worksで開発・整備しているプロジェクトです。公開準備が整ったものからGitHubで順次公開します。</p>
+        <p>Haku Soft Worksで開発・整備しているプロジェクトです。公開済みソフトウェアと、現在開発中のプロジェクトを紹介します。</p>
       </div>
       <div class="projects">
         <article class="card">
-          <span class="badge">Preparing release</span>
-          <h3>Super Star Trek</h3>
-          <p>BASIC MASTER L2II向けにMotorola 6800アセンブリで再構成したクラシック・コンピュータゲームプロジェクト。</p>
-          <div class="meta"><span>BASIC MASTER L2II</span><span>MC6800</span><span>Assembly</span></div>
+          <span class="badge released">Released v1.0</span>
+          <h3>REVERSI</h3>
+          <p>BASIC MASTER LEVEL2II向けのコンピュータ対戦リバーシ。約750kHz・16KB RAMの環境で、Negamax＋αβ枝刈り、局面評価、終盤探索などを実装しています。</p>
+          <div class="meta"><span>BASIC MASTER LEVEL2II</span><span>HD46800 / MC6800</span><span>Game AI</span></div>
+          <a class="project-link" href="https://github.com/HakuSoftWorks/Reversi-BM-L2II" target="_blank" rel="noopener">GitHubで公開中 →</a>
         </article>
         <article class="card">
           <span class="badge">In development</span>
-          <h3>Reversi</h3>
-          <p>BASIC MASTER L2II上で動作するリバーシ。評価関数、探索、表示UIを含め、実機で遊べる完成度を目指しています。</p>
-          <div class="meta"><span>BASIC MASTER L2II</span><span>MC6800</span><span>Game AI</span></div>
+          <h3>CARD GAMES Vol.1</h3>
+          <p>BASIC MASTER LEVEL2IIの16KB RAMに、7ならべ、ババ抜き、5カードドローポーカー、ダウトの4本を収録するトランプゲーム集です。</p>
+          <div class="meta"><span>BASIC MASTER LEVEL2II</span><span>HD46800 / MC6800</span><span>4 Card Games</span></div>
         </article>
       </div>
     </div>
@@ -167,9 +181,10 @@ STATUS   : READY
 
   <section id="links">
     <div class="wrap">
-      <div class="section-head"><h2>Links</h2><p>開発成果、動画、最新情報はこちらから。</p></div>
+      <div class="section-head"><h2>Links</h2><p>ソースコード、開発記録、動画、最新情報はこちらから。</p></div>
       <div class="link-grid">
         <a class="link-card" href="https://github.com/HakuSoftWorks" target="_blank" rel="noopener"><strong>GitHub</strong><span>Source code &amp; releases</span></a>
+        <a class="link-card" href="https://note.com/hakusoftworks" target="_blank" rel="noopener"><strong>note</strong><span>Development stories &amp; technical notes</span></a>
         <a class="link-card" href="https://www.youtube.com/@HakuSoftWorks" target="_blank" rel="noopener"><strong>YouTube</strong><span>Demos &amp; real hardware videos</span></a>
         <a class="link-card" href="https://x.com/HakuSoftWorks" target="_blank" rel="noopener"><strong>X</strong><span>Updates &amp; development notes</span></a>
         <a class="link-card" href="mailto:contact@hakusoftworks.com"><strong>Contact</strong><span>contact@hakusoftworks.com</span></a>
