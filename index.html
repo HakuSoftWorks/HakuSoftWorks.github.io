@@ -67,7 +67,8 @@
     .badge.released{background:#eefbf3;color:#19784a}
     .card h3{margin:0 0 8px;font-size:26px;color:var(--navy)} .card p{color:var(--muted);margin:0 0 18px}
     .meta{display:flex;gap:8px;flex-wrap:wrap}.meta span{font-size:12px;font-weight:800;padding:6px 9px;border-radius:8px;background:#f2f6fa;color:#50637a}
-    .project-link{display:inline-flex;margin-top:20px;text-decoration:none;font-size:13px;font-weight:800;color:var(--blue)}
+    .project-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px}
+    .project-link{display:inline-flex;margin-top:0;text-decoration:none;font-size:13px;font-weight:800;color:var(--blue)}
     .project-link:hover{text-decoration:underline}
     .about{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
     .about-panel{background:linear-gradient(145deg,#f6fbff,#fff);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
@@ -150,15 +151,24 @@ STATUS   : READY
         <article class="card">
           <span class="badge released">Released v1.0</span>
           <h3>REVERSI</h3>
-          <p>BASIC MASTER LEVEL2II向けのコンピュータ対戦リバーシ。約750kHz・16KB RAMの環境で、Negamax＋αβ枝刈り、局面評価、終盤探索などを実装しています。</p>
+          <p>BASIC MASTER LEVEL2II向けのコンピュータ対戦リバーシ。約750kHz・16KB RAMの環境で、3段階のCOM、合法手表示、Negamax＋αβ枝刈り、局面評価、終盤探索、思考時間表示を実装しています。v1.0をGitHubで公開し、開発記をnoteで全10回公開しています。</p>
           <div class="meta"><span>BASIC MASTER LEVEL2II</span><span>HD46800 / MC6800</span><span>Game AI</span></div>
-          <a class="project-link" href="https://github.com/HakuSoftWorks/Reversi-BM-L2II" target="_blank" rel="noopener">GitHubで公開中 →</a>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/HakuSoftWorks/Reversi-BM-L2II" target="_blank" rel="noopener">GitHub →</a>
+            <a class="project-link" href="https://note.com/hakusoftworks/n/nc4b7d8d272c2" target="_blank" rel="noopener">note →</a>
+            <a class="project-link" href="https://youtu.be/aiN6JqGPsug" target="_blank" rel="noopener">YouTube →</a>
+          </div>
         </article>
         <article class="card">
-          <span class="badge">In development</span>
+          <span class="badge released">Released v1.0</span>
           <h3>CARD GAMES Vol.1</h3>
-          <p>BASIC MASTER LEVEL2IIの16KB RAMに、7ならべ、ババ抜き、5カードドローポーカー、ダウトの4本を収録するトランプゲーム集です。</p>
+          <p>BASIC MASTER LEVEL2IIの16KB RAMに、7ナラベ、ババヌキ、5カードドローポーカー、ダウトの4本を収録。共通化したカード・山札・手札処理を使い、4本を1本のプログラムにまとめました。v1.0をGitHubで公開し、開発記と実機動画も公開しています。</p>
           <div class="meta"><span>BASIC MASTER LEVEL2II</span><span>HD46800 / MC6800</span><span>4 Card Games</span></div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/HakuSoftWorks/CARD_GAMES_Vol1_BM_L2II" target="_blank" rel="noopener">GitHub →</a>
+            <a class="project-link" href="https://note.com/hakusoftworks/n/n80350c84a7f1" target="_blank" rel="noopener">note →</a>
+            <a class="project-link" href="https://youtu.be/epEmIA2oE0Q" target="_blank" rel="noopener">YouTube →</a>
+          </div>
         </article>
       </div>
     </div>
@@ -181,9 +191,9 @@ STATUS   : READY
 
   <section id="links">
     <div class="wrap">
-      <div class="section-head"><h2>Links</h2><p>ソースコード、開発記録、動画、最新情報はこちらから。</p></div>
+      <div class="section-head"><h2>Links</h2><p>リリース、開発記録、動画、最新情報はこちらから。</p></div>
       <div class="link-grid">
-        <a class="link-card" href="https://github.com/HakuSoftWorks" target="_blank" rel="noopener"><strong>GitHub</strong><span>Source code &amp; releases</span></a>
+        <a class="link-card" href="https://github.com/HakuSoftWorks" target="_blank" rel="noopener"><strong>GitHub</strong><span>Releases &amp; project files</span></a>
         <a class="link-card" href="https://note.com/hakusoftworks" target="_blank" rel="noopener"><strong>note</strong><span>Development stories &amp; technical notes</span></a>
         <a class="link-card" href="https://www.youtube.com/@HakuSoftWorks" target="_blank" rel="noopener"><strong>YouTube</strong><span>Demos &amp; real hardware videos</span></a>
         <a class="link-card" href="https://x.com/HakuSoftWorks" target="_blank" rel="noopener"><strong>X</strong><span>Updates &amp; development notes</span></a>
@@ -193,7 +203,7 @@ STATUS   : READY
   </section>
 </main>
 <footer>
-  <div class="wrap foot"><span>c 2026 Haku Soft Works</span><span>Software for Classic Japanese Computers</span></div>
+  <div class="wrap foot"><span>© 2026 Haku Soft Works</span><span>Software for Classic Japanese Computers</span></div>
 </footer>
 </body>
 </html>

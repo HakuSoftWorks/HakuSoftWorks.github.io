@@ -67,7 +67,8 @@
     .badge.released{background:#eefbf3;color:#19784a}
     .card h3{margin:0 0 8px;font-size:26px;color:var(--navy)} .card p{color:var(--muted);margin:0 0 18px}
     .meta{display:flex;gap:8px;flex-wrap:wrap}.meta span{font-size:12px;font-weight:800;padding:6px 9px;border-radius:8px;background:#f2f6fa;color:#50637a}
-    .project-link{display:inline-flex;margin-top:20px;text-decoration:none;font-size:13px;font-weight:800;color:var(--blue)}
+    .project-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px}
+    .project-link{display:inline-flex;margin-top:0;text-decoration:none;font-size:13px;font-weight:800;color:var(--blue)}
     .project-link:hover{text-decoration:underline}
     .about{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
     .about-panel{background:linear-gradient(145deg,#f6fbff,#fff);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
@@ -150,15 +151,24 @@ STATUS   : READY
         <article class="card">
           <span class="badge released">Released v1.0</span>
           <h3>REVERSI</h3>
-          <p>A computer-opponent Reversi game for the BASIC MASTER LEVEL2II. Designed for an approximately 750 kHz CPU and 16 KB of RAM, it includes Negamax search, alpha-beta pruning, positional evaluation, and exact endgame search.</p>
+          <p>A computer-opponent Reversi game for the BASIC MASTER LEVEL2II. Built for an approximately 750 kHz CPU and 16 KB of RAM, it features three COM levels, legal-move indicators, Negamax search, alpha-beta pruning, positional evaluation, endgame search, and visible thinking-time feedback. Version 1.0 is available on GitHub, with a 10-part development series on note.</p>
           <div class="meta"><span>BASIC MASTER LEVEL2II</span><span>HD46800 / MC6800</span><span>Game AI</span></div>
-          <a class="project-link" href="https://github.com/HakuSoftWorks/Reversi-BM-L2II" target="_blank" rel="noopener">Available on GitHub →</a>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/HakuSoftWorks/Reversi-BM-L2II" target="_blank" rel="noopener">GitHub →</a>
+            <a class="project-link" href="https://note.com/hakusoftworks/n/nc4b7d8d272c2" target="_blank" rel="noopener">note →</a>
+            <a class="project-link" href="https://youtu.be/aiN6JqGPsug" target="_blank" rel="noopener">YouTube →</a>
+          </div>
         </article>
         <article class="card">
-          <span class="badge">In development</span>
+          <span class="badge released">Released v1.0</span>
           <h3>CARD GAMES Vol.1</h3>
-          <p>A four-game card collection for the BASIC MASTER LEVEL2II, designed to fit within its 16 KB RAM environment: SEVENS, OLD MAID, 5-CARD DRAW POKER, and DOUBT.</p>
+          <p>A four-game card collection for the BASIC MASTER LEVEL2II: SEVENS, OLD MAID, 5-CARD DRAW POKER, and DOUBT. Shared card, deck, and hand routines allow all four games to fit into a single program for the 16 KB RAM environment. Version 1.0 is available on GitHub, with development notes and a real-hardware video also published.</p>
           <div class="meta"><span>BASIC MASTER LEVEL2II</span><span>HD46800 / MC6800</span><span>4 Card Games</span></div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/HakuSoftWorks/CARD_GAMES_Vol1_BM_L2II" target="_blank" rel="noopener">GitHub →</a>
+            <a class="project-link" href="https://note.com/hakusoftworks/n/n80350c84a7f1" target="_blank" rel="noopener">note →</a>
+            <a class="project-link" href="https://youtu.be/epEmIA2oE0Q" target="_blank" rel="noopener">YouTube →</a>
+          </div>
         </article>
       </div>
     </div>
@@ -174,16 +184,16 @@ STATUS   : READY
       <div class="about-panel">
         <h3>Focus</h3>
         <p>BASIC MASTER series / Motorola 6800 / Retro software development / Ports / Reimplementations / Documentation</p>
-        <p>Understanding the limitations of old hardware?and finding creative ways to work within them?is a central part of the project.</p>
+        <p>Understanding the limitations of old hardware—and finding creative ways to work within them—is a central part of the project.</p>
       </div>
     </div>
   </section>
 
   <section id="links">
     <div class="wrap">
-      <div class="section-head"><h2>Links</h2><p>Source code, development stories, videos, and project updates.</p></div>
+      <div class="section-head"><h2>Links</h2><p>Releases, development stories, videos, and project updates.</p></div>
       <div class="link-grid">
-        <a class="link-card" href="https://github.com/HakuSoftWorks" target="_blank" rel="noopener"><strong>GitHub</strong><span>Source code &amp; releases</span></a>
+        <a class="link-card" href="https://github.com/HakuSoftWorks" target="_blank" rel="noopener"><strong>GitHub</strong><span>Releases &amp; project files</span></a>
         <a class="link-card" href="https://note.com/hakusoftworks" target="_blank" rel="noopener"><strong>note</strong><span>Development stories &amp; technical notes</span></a>
         <a class="link-card" href="https://www.youtube.com/@HakuSoftWorks" target="_blank" rel="noopener"><strong>YouTube</strong><span>Demos &amp; real hardware videos</span></a>
         <a class="link-card" href="https://x.com/HakuSoftWorks" target="_blank" rel="noopener"><strong>X</strong><span>Updates &amp; development notes</span></a>
@@ -193,7 +203,7 @@ STATUS   : READY
   </section>
 </main>
 <footer>
-  <div class="wrap foot"><span>c 2026 Haku Soft Works</span><span>Software for Classic Japanese Computers</span></div>
+  <div class="wrap foot"><span>© 2026 Haku Soft Works</span><span>Software for Classic Japanese Computers</span></div>
 </footer>
 </body>
 </html>
